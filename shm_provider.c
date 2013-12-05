@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 {
     int fd;
     struct my_share_mem *my_shared_memory;
-	pthread_mutexattr_t attr;
+    pthread_mutexattr_t attr;
 
     fd = shm_open(MY_SHARE_OBJ, O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
     pthread_mutexattr_init(&attr);
