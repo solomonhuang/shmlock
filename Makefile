@@ -6,11 +6,21 @@ lock: shmlock.h shm_provider.c shm_user.c
 	gcc shm_user.c -o user -DUSE_LOCK $(CFLAGS)
 
 nolock: shmlock.h shm_provider.c shm_user.c
-	gcc shm_provider.c -o provider $(CFLAGS)
-	gcc shm_user.c -o user $(CFLAGS)
+	gcc shm_provider.c -o provider-nolock $(CFLAGS)
+	gcc shm_user.c -o user-nolock $(CFLAGS)
 
 clean:
-	-rm -rf provider user *.orig
+	-rm -rf provider user provider-nolock user-nolock *.orig
+
+test: lock
+	./provider &
+	sleep 1
+	./user; ./user; ./user
+
+test-nolock: nolock
+	./provider-nolock &
+	sleep 1
+	./user-nolock; ./user-nolock; ./user-nolock
 
 beauty:
 	astyle -xi \
