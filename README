@@ -1,1 +1,7 @@
 Try to understand share memory and resource lock.
+
+ * Create share memory with shm_open
+ * adjust share memory size with ftruncate
+ * using mmap()
+ * using mutex with attribute PTHREAD_PROCESS_SHARED
+ * access memory with mutex
